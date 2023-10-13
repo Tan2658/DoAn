@@ -140,6 +140,5 @@ create table DungCuNhaKhoa
 	Don money not null,
 	ThanhTien money not null,
 	NgayNhap datetime not null,
-	primary key (IDDungCu),
-	constraint chk_TenDangNhap foreign key (TenDangNhap) references TaiKhoan(TenDangNhap)
+	primary key (IDDungCu)
 )
