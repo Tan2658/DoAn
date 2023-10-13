@@ -113,6 +113,20 @@ create table TaiKhoan
 	MatKhau varchar(50) not null,
 	primary key (TenDangNhap)
 )
+	
+if exists (select * from sys.objects where name ='BacSi')
+drop table BacSi
+go
+create table BacSi
+(
+	TenDangNhap varchar(22) not null,
+	MatKhau varchar(50) not null,
+	Ten nvarchar(50) not null,
+	ChucVu nvarchar(50) not null,
+	KinhNghiem nvarchar(50) not null,
+	STD CHAR (10) not null,
+	primary key (TenDangNhap)
+)
 
 if exists (select * from sys.objects where name ='DungCuNhaKhoa')
 	drop table DungCuNhaKhoa
@@ -120,12 +134,12 @@ go
 create table DungCuNhaKhoa
 (
 	IDDungCu char(3) not null,
-	TenDangNhap varchar(22) not null,
 	TenDungCu nvarchar(255) not null,
 	DonViTinh nvarchar(255) not null,
 	SoLuong int not null,
 	Don money not null,
 	ThanhTien money not null,
+	NgayNhap datetime not null,
 	primary key (IDDungCu),
 	constraint chk_TenDangNhap foreign key (TenDangNhap) references TaiKhoan(TenDangNhap)
 )
