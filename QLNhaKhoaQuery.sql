@@ -124,7 +124,8 @@ create table BacSi
 	Ten nvarchar(50) not null,
 	ChucVu nvarchar(50) not null,
 	KinhNghiem nvarchar(50) not null,
-	STD CHAR (10) not null,
+	SDT CHAR (10) not null,
+	MoTa nvarchar(100) not null,
 	primary key (TenDangNhap)
 )
 
