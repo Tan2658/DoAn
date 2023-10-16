@@ -134,6 +134,7 @@ if exists (select * from sys.objects where name ='DungCuNhaKhoa')
 go
 create table DungCuNhaKhoa
 (
+	NoiDung nvarchar(50) not null,
 	IDDungCu char(3) not null,
 	TenDungCu nvarchar(255) not null,
 	DonViTinh nvarchar(255) not null,
