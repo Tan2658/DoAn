@@ -146,9 +146,9 @@ create table DungCuNhaKhoa
 	primary key (IDDungCu)
 )
 INSERT INTO DungCuNhaKhoa
-VALUES('Nhập','SP1','Bông gòn','VTYT','túi',1000,10000.00,10000000.00,'10/17/2023'),
-	  ('Nhập','SP2','Thuốc tê local ','Thuốc','thùng',100,200000.00,20000000.00,'10/17/2023'),
-	  ('Nhập','SP3','Ống hút bọt','VTYT','cái',1000,20000.00,20000000.00,'10/17/2023'),
-	  ('Nhập','SP4','Gương nha khoa','VTYT','cái',50,20000.00,1000000.00,'10/17/2023'),
-	  ('Nhập','SP5','Nước súc miệng','Thuốc','cái',100,200000.00,20000000.00,'10/17/2023'),
-	  ('Nhập','SP6','Thuốc chống đau và chống viêm ','Thuốc','thùng',100,250000.00,25000000.00,'10/17/2023');
+VALUES('Nhap','SP1','Bong gon','VTYT','tui',1000,10000.00,10000000.00,'10/17/2023'),
+	  ('Nhap','SP2','Thuoc te local ','Thuoc','thung',100,200000.00,20000000.00,'10/17/2023'),
+	  ('Nhap','SP3','Ong hut bot','VTYT','cai',1000,20000.00,20000000.00,'10/17/2023'),
+	  ('Nhap','SP4','Guong nha khoa','VTYT','cai',50,20000.00,1000000.00,'10/17/2023'),
+	  ('Nhap','SP5','Nuoc suc mieng','Thuoc','cai',100,200000.00,20000000.00,'10/17/2023'),
+	  ('Nhap','SP6','Thuoc chong dau và chong viem ','Thuoc','thung',100,250000.00,25000000.00,'10/17/2023');
