@@ -145,3 +145,10 @@ create table DungCuNhaKhoa
 	NgayNhap datetime not null,
 	primary key (IDDungCu)
 )
+INSERT INTO DungCuNhaKhoa
+VALUES('Nhập','SP1','Bông gòn','VTYT','túi',1000,10000.00,10000000.00,'10/17/2023'),
+	  ('Nhập','SP2','Thuốc tê local ','Thuốc','thùng',100,200000.00,20000000.00,'10/17/2023'),
+	  ('Nhập','SP3','Ống hút bọt','VTYT','cái',1000,20000.00,20000000.00,'10/17/2023'),
+	  ('Nhập','SP4','Gương nha khoa','VTYT','cái',50,20000.00,1000000.00,'10/17/2023'),
+	  ('Nhập','SP5','Nước súc miệng','Thuốc','cái',100,200000.00,20000000.00,'10/17/2023'),
+	  ('Nhập','SP6','Thuốc chống đau và chống viêm ','Thuốc','thùng',100,250000.00,25000000.00,'10/17/2023');
