@@ -9,21 +9,29 @@ namespace DAL.Models
     [Table("CanLamSang")]
     public partial class CanLamSang
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public CanLamSang()
+        {
+            BenhNhan = new HashSet<BenhNhan>();
+        }
+
         [Key]
-        [Column(Order = 0)]
+        [StringLength(3)]
+        public string IDCanLamSang { get; set; }
+
+        [Required]
         [StringLength(50)]
         public string Loai { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
+        [Required]
         [StringLength(25)]
         public string ThongSo { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         [StringLength(3)]
         public string IDBenhNhan { get; set; }
 
-        public virtual BenhNhan BenhNhan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BenhNhan> BenhNhan { get; set; }
     }
 }

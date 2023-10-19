@@ -9,42 +9,42 @@ namespace DAL.Models
     [Table("HoaDon")]
     public partial class HoaDon
     {
-        [Key]
-        [Column(Order = 0)]
-        [StringLength(3)]
-        public string IDBenhNhan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public HoaDon()
+        {
+            BenhNhan = new HashSet<BenhNhan>();
+        }
 
         [Key]
-        [Column(Order = 1)]
+        [StringLength(3)]
+        public string IDHoaDon { get; set; }
+
+        [Required]
         [StringLength(255)]
         public string HoTen { get; set; }
 
         public bool? Gioi { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        [Required]
         [StringLength(4)]
         public string NamSinh { get; set; }
 
-        [Key]
-        [Column(Order = 3)]
+        [Required]
         [StringLength(11)]
         public string SDT { get; set; }
 
-        [Key]
-        [Column(Order = 4)]
+        [Required]
         [StringLength(255)]
         public string DiaChi { get; set; }
 
-        [Key]
-        [Column(Order = 5)]
+        [Required]
         [StringLength(255)]
         public string PhuongThucThanhToan { get; set; }
 
-        [Key]
-        [Column(Order = 6, TypeName = "money")]
+        [Column(TypeName = "money")]
         public decimal TongTien { get; set; }
 
-        public virtual BenhNhan BenhNhan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BenhNhan> BenhNhan { get; set; }
     }
 }

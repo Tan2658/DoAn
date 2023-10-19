@@ -12,16 +12,13 @@ namespace DAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DonThuoc()
         {
+            BenhNhan = new HashSet<BenhNhan>();
             CTDonThuoc = new HashSet<CTDonThuoc>();
         }
 
         [Key]
         [StringLength(3)]
         public string IDDonThuoc { get; set; }
-
-        [Required]
-        [StringLength(3)]
-        public string IDBenhNhan { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -41,7 +38,8 @@ namespace DAL.Models
         [StringLength(255)]
         public string DiaChi { get; set; }
 
-        public virtual BenhNhan BenhNhan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BenhNhan> BenhNhan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CTDonThuoc> CTDonThuoc { get; set; }

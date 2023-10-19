@@ -185,6 +185,7 @@ namespace GUI
             this.MinimumSize = new System.Drawing.Size(1600, 900);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabControl2.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);

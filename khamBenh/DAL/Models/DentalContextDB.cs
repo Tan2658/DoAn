@@ -14,15 +14,15 @@ namespace DAL.Models
 
         public virtual DbSet<BacSi> BacSi { get; set; }
         public virtual DbSet<BenhNhan> BenhNhan { get; set; }
+        public virtual DbSet<CanLamSang> CanLamSang { get; set; }
         public virtual DbSet<ChanDoan> ChanDoan { get; set; }
         public virtual DbSet<DonThuoc> DonThuoc { get; set; }
         public virtual DbSet<DungCuNhaKhoa> DungCuNhaKhoa { get; set; }
+        public virtual DbSet<HoaDon> HoaDon { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
-        public virtual DbSet<CanLamSang> CanLamSang { get; set; }
         public virtual DbSet<CTDonThuoc> CTDonThuoc { get; set; }
         public virtual DbSet<DieuTri> DieuTri { get; set; }
-        public virtual DbSet<HoaDon> HoaDon { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -56,6 +56,26 @@ namespace DAL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<BenhNhan>()
+                .Property(e => e.IDHoaDon)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BenhNhan>()
+                .Property(e => e.IDDonThuoc)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BenhNhan>()
+                .Property(e => e.IDChanDoan)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BenhNhan>()
+                .Property(e => e.IDCanLamSang)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BenhNhan>()
                 .Property(e => e.NamSinh)
                 .IsFixedLength()
                 .IsUnicode(false);
@@ -64,24 +84,19 @@ namespace DAL.Models
                 .Property(e => e.SDT)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<BenhNhan>()
-                .HasMany(e => e.CanLamSang)
-                .WithRequired(e => e.BenhNhan)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<CanLamSang>()
+                .Property(e => e.IDCanLamSang)
+                .IsFixedLength()
+                .IsUnicode(false);
 
-            modelBuilder.Entity<BenhNhan>()
-                .HasMany(e => e.ChanDoan)
-                .WithRequired(e => e.BenhNhan)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<CanLamSang>()
+                .Property(e => e.IDBenhNhan)
+                .IsFixedLength()
+                .IsUnicode(false);
 
-            modelBuilder.Entity<BenhNhan>()
-                .HasMany(e => e.DonThuoc)
-                .WithRequired(e => e.BenhNhan)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<BenhNhan>()
-                .HasMany(e => e.HoaDon)
-                .WithRequired(e => e.BenhNhan)
+            modelBuilder.Entity<CanLamSang>()
+                .HasMany(e => e.BenhNhan)
+                .WithRequired(e => e.CanLamSang)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<ChanDoan>()
@@ -95,17 +110,17 @@ namespace DAL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<ChanDoan>()
+                .HasMany(e => e.BenhNhan)
+                .WithRequired(e => e.ChanDoan)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ChanDoan>()
                 .HasMany(e => e.DieuTri)
                 .WithRequired(e => e.ChanDoan)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DonThuoc>()
                 .Property(e => e.IDDonThuoc)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DonThuoc>()
-                .Property(e => e.IDBenhNhan)
                 .IsFixedLength()
                 .IsUnicode(false);
 
@@ -117,6 +132,11 @@ namespace DAL.Models
             modelBuilder.Entity<DonThuoc>()
                 .Property(e => e.SDT)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<DonThuoc>()
+                .HasMany(e => e.BenhNhan)
+                .WithRequired(e => e.DonThuoc)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DonThuoc>()
                 .HasMany(e => e.CTDonThuoc)
@@ -136,6 +156,29 @@ namespace DAL.Models
                 .Property(e => e.ThanhTien)
                 .HasPrecision(19, 4);
 
+            modelBuilder.Entity<HoaDon>()
+                .Property(e => e.IDHoaDon)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HoaDon>()
+                .Property(e => e.NamSinh)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HoaDon>()
+                .Property(e => e.SDT)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<HoaDon>()
+                .Property(e => e.TongTien)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<HoaDon>()
+                .HasMany(e => e.BenhNhan)
+                .WithRequired(e => e.HoaDon)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<TaiKhoan>()
                 .Property(e => e.TenDangNhap)
                 .IsUnicode(false);
@@ -148,11 +191,6 @@ namespace DAL.Models
                 .HasMany(e => e.BacSi)
                 .WithRequired(e => e.TaiKhoan)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CanLamSang>()
-                .Property(e => e.IDBenhNhan)
-                .IsFixedLength()
-                .IsUnicode(false);
 
             modelBuilder.Entity<CTDonThuoc>()
                 .Property(e => e.IDDonThuoc)
@@ -184,24 +222,6 @@ namespace DAL.Models
                 .Property(e => e.IDChanDoan)
                 .IsFixedLength()
                 .IsUnicode(false);
-
-            modelBuilder.Entity<HoaDon>()
-                .Property(e => e.IDBenhNhan)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<HoaDon>()
-                .Property(e => e.NamSinh)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<HoaDon>()
-                .Property(e => e.SDT)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<HoaDon>()
-                .Property(e => e.TongTien)
-                .HasPrecision(19, 4);
         }
     }
 }
