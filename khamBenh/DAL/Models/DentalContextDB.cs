@@ -12,6 +12,7 @@ namespace DAL.Models
         {
         }
 
+        public virtual DbSet<BacSi> BacSi { get; set; }
         public virtual DbSet<BenhNhan> BenhNhan { get; set; }
         public virtual DbSet<ChanDoan> ChanDoan { get; set; }
         public virtual DbSet<DonThuoc> DonThuoc { get; set; }
@@ -25,8 +26,32 @@ namespace DAL.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<BacSi>()
+                .Property(e => e.MaNV)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BacSi>()
+                .Property(e => e.TenDangNhap)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BacSi>()
+                .Property(e => e.SDT)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BacSi>()
+                .HasMany(e => e.BenhNhan)
+                .WithRequired(e => e.BacSi)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Entity<BenhNhan>()
                 .Property(e => e.IDBenhNhan)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<BenhNhan>()
+                .Property(e => e.MaNV)
                 .IsFixedLength()
                 .IsUnicode(false);
 
@@ -104,10 +129,6 @@ namespace DAL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<DungCuNhaKhoa>()
-                .Property(e => e.TenDangNhap)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<DungCuNhaKhoa>()
                 .Property(e => e.Don)
                 .HasPrecision(19, 4);
 
@@ -124,7 +145,7 @@ namespace DAL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<TaiKhoan>()
-                .HasMany(e => e.DungCuNhaKhoa)
+                .HasMany(e => e.BacSi)
                 .WithRequired(e => e.TaiKhoan)
                 .WillCascadeOnDelete(false);
 

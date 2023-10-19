@@ -12,7 +12,7 @@ namespace DAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TaiKhoan()
         {
-            DungCuNhaKhoa = new HashSet<DungCuNhaKhoa>();
+            BacSi = new HashSet<BacSi>();
         }
 
         [Key]
@@ -24,6 +24,6 @@ namespace DAL.Models
         public string MatKhau { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DungCuNhaKhoa> DungCuNhaKhoa { get; set; }
+        public virtual ICollection<BacSi> BacSi { get; set; }
     }
 }

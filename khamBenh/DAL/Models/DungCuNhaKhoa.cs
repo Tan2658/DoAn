@@ -9,17 +9,21 @@ namespace DAL.Models
     [Table("DungCuNhaKhoa")]
     public partial class DungCuNhaKhoa
     {
+        [Required]
+        [StringLength(50)]
+        public string NoiDung { get; set; }
+
         [Key]
         [StringLength(3)]
         public string IDDungCu { get; set; }
 
         [Required]
-        [StringLength(22)]
-        public string TenDangNhap { get; set; }
+        [StringLength(255)]
+        public string TenDungCu { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string TenDungCu { get; set; }
+        public string Loai { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -33,6 +37,6 @@ namespace DAL.Models
         [Column(TypeName = "money")]
         public decimal ThanhTien { get; set; }
 
-        public virtual TaiKhoan TaiKhoan { get; set; }
+        public DateTime NgayNhap { get; set; }
     }
 }

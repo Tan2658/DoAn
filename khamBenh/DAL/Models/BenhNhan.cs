@@ -23,6 +23,10 @@ namespace DAL.Models
         public string IDBenhNhan { get; set; }
 
         [Required]
+        [StringLength(3)]
+        public string MaNV { get; set; }
+
+        [Required]
         [StringLength(255)]
         public string HoTen { get; set; }
 
@@ -45,6 +49,8 @@ namespace DAL.Models
         [Required]
         [StringLength(255)]
         public string LyDo { get; set; }
+
+        public virtual BacSi BacSi { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CanLamSang> CanLamSang { get; set; }
