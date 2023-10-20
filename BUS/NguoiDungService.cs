@@ -35,8 +35,9 @@ namespace BUS
         public List<BacSi> SortRegisted()
         {
             DentalContextDB db = new DentalContextDB();
-            return db.BacSis.Where(p => p.TrangThai == "Sử Dụng" || p.TrangThai == "No Sử Dụng" ).OrderBy(p => p.Ten).ToList();
+            return db.BacSis.Where(p => p.TrangThai == "Sử Dụng" || p.TrangThai == "No Sử Dụng").OrderBy(p => p.Ten).ToList();
         }
+        // test
         public List<BacSi> SortRegister()
         {
             DentalContextDB db = new DentalContextDB();

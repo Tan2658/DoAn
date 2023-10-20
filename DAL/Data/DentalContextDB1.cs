@@ -12,7 +12,7 @@ namespace DAL.Data
         public DentalContextDB1()
             : base("name=DentalContextDB1")
         {
-            InitializeComponent();
+          
         }
 
         public virtual DbSet<BenhNhan> BenhNhans { get; set; }
