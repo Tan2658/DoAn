@@ -6,7 +6,6 @@ go
 use QLNhaKhoa
 go
 
-
 if exists (select * from sys.objects where name ='DungCuNhaKhoa')
 	drop table DungCuNhaKhoa
 go
@@ -54,7 +53,7 @@ create table BacSi
 	SDT CHAR (10) not null,
 	MoTa nvarchar(100) not null,
 	primary key (MaNV),
-	constraint chk_TenDangNhap foreign key (TenDangNhap) references TaiKhoan(TenDangNhap)
+	constraint chk_TenDangNhap_BacSi foreign key (TenDangNhap) references TaiKhoan(TenDangNhap)
 )
 
 if exists (select * from sys.objects where name ='BenhNhan')
@@ -80,10 +79,10 @@ if exists (select * from sys.objects where name ='CanLamSang')
 go
 create table CanLamSang
 (
+	IDBenhNhan char(3) not null,
 	Loai nvarchar(50) not null,
 	ThongSo nvarchar(25) not null,
-	IDBenhNhan char(3) not null,
-	constraint chk_IDBenhNhan foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan)
+	constraint chk_IDBenhNhan_CanLamSang foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan)
 )
 
 if exists (select * from sys.objects where name ='ChanDoan')
@@ -93,9 +92,7 @@ create table ChanDoan
 (
 	IDChanDoan char(3) not null,
 	TenChanDoan nvarchar(255) not null,
-	IDBenhNhan char(3) not null,
-	primary key (IDChanDoan),
-	constraint chk_IDBenhNhan1 foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan)
+	primary key (IDChanDoan)
 )
 
 if exists (select * from sys.objects where name ='DieuTri')
@@ -103,14 +100,17 @@ if exists (select * from sys.objects where name ='DieuTri')
 go
 create table DieuTri
 (
-	IDDieuTri char(2) not null,
+	IDChanDoan char(3) not null,
+	IDBenhNhan char(3) not null,
+	IDDungCu char(3) not null,
 	TenDieuTri nvarchar(255) not null,
 	DonViTinh nvarchar(255) not null,
 	SoLuong int not null,
 	DonGia money not null,
 	ThanhTien money not null,
-	IDChanDoan char(3) not null,
-	constraint chk_IDChanDoan foreign key (IDChanDoan) references ChanDoan(IDChanDoan)
+	constraint chk_IDChanDoan_DieuTri foreign key (IDChanDoan) references ChanDoan(IDChanDoan),
+	constraint chk_IDBenhNhan_DieuTri foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan),
+	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references DungCuNhaKhoa(IDDungCu),
 )
 
 if exists (select * from sys.objects where name ='DonThuoc')
@@ -120,13 +120,8 @@ create table DonThuoc
 (
 	IDDonThuoc char(3) not null,
 	IDBenhNhan char(3) not null,
-	HoTen nvarchar(255) not null,
-	Gioi bit,
-	NamSinh char(4) not null,
-	SDT varchar(11) not null,
-	DiaChi nvarchar(255) not null,
 	primary key (IDDonThuoc),
-	constraint chk_IDBenhNhan2 foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan)
+	constraint chk_IDBenhNhan_DonThuoc foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan)
 )
 
 if exists (select * from sys.objects where name ='CTDonThuoc')
@@ -136,11 +131,11 @@ create table CTDonThuoc
 (
 	IDDonThuoc char(3) not null,
 	TenThuoc nvarchar(255) not null,
+	DonGia money not null,
 	DonViTinh nvarchar(255) not null,
 	SoLuong int not null,
-	DonGia money not null,
 	ThanhGia money not null,
-	constraint chk_IDDonThuoc foreign key (IDDonThuoc) references DonThuoc(IDDonThuoc)
+	constraint chk_IDDonThuoc_CTDonThuoc foreign key (IDDonThuoc) references DonThuoc(IDDonThuoc)
 )
 
 if exists (select * from sys.objects where name ='HoaDon')
@@ -148,6 +143,7 @@ if exists (select * from sys.objects where name ='HoaDon')
 go
 create table HoaDon
 (
+	IDHoaDon char(3) not null,
 	IDBenhNhan char(3) not null,
 	HoTen nvarchar(255) not null,
 	Gioi bit,
@@ -156,5 +152,6 @@ create table HoaDon
 	DiaChi nvarchar(255) not null,
 	PhuongThucThanhToan nvarchar(255) not null,
 	TongTien money not null,
-	constraint chk_IDBenhNhan3 foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan)
+	primary key (IDHoaDon),
+	constraint chk_IDBenhNhan_HoaDon foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan)
 )
