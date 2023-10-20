@@ -83,6 +83,16 @@ namespace FormLogin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _393445897_981564836269176_8077072744143297869_n {
+            get {
+                object obj = ResourceManager.GetObject("393445897_981564836269176_8077072744143297869_n", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap dentist_R560BY {
             get {
                 object obj = ResourceManager.GetObject("dentist-R560BY", resourceCulture);
@@ -186,6 +196,16 @@ namespace FormLogin.Properties {
         internal static System.Drawing.Bitmap picture_3 {
             get {
                 object obj = ResourceManager.GetObject("picture-3", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap picture_3_removebg_preview {
+            get {
+                object obj = ResourceManager.GetObject("picture-3-removebg-preview", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

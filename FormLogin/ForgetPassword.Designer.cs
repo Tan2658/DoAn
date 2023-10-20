@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblValidPassword = new System.Windows.Forms.Label();
+            this.lblValidUserName = new System.Windows.Forms.Label();
             this.btnLog = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.txtUsername = new System.Windows.Forms.TextBox();
@@ -45,6 +47,8 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblValidPassword);
+            this.panel1.Controls.Add(this.lblValidUserName);
             this.panel1.Controls.Add(this.btnLog);
             this.panel1.Controls.Add(this.btnReset);
             this.panel1.Controls.Add(this.txtUsername);
@@ -56,6 +60,28 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(253, 365);
             this.panel1.TabIndex = 1;
+            // 
+            // lblValidPassword
+            // 
+            this.lblValidPassword.AutoSize = true;
+            this.lblValidPassword.ForeColor = System.Drawing.Color.Red;
+            this.lblValidPassword.Location = new System.Drawing.Point(23, 295);
+            this.lblValidPassword.Name = "lblValidPassword";
+            this.lblValidPassword.Size = new System.Drawing.Size(159, 16);
+            this.lblValidPassword.TabIndex = 8;
+            this.lblValidPassword.Text = "Vui lòng nhập trường này !";
+            this.lblValidPassword.Visible = false;
+            // 
+            // lblValidUserName
+            // 
+            this.lblValidUserName.AutoSize = true;
+            this.lblValidUserName.ForeColor = System.Drawing.Color.Red;
+            this.lblValidUserName.Location = new System.Drawing.Point(23, 216);
+            this.lblValidUserName.Name = "lblValidUserName";
+            this.lblValidUserName.Size = new System.Drawing.Size(159, 16);
+            this.lblValidUserName.TabIndex = 7;
+            this.lblValidUserName.Text = "Vui lòng nhập trường này !";
+            this.lblValidUserName.Visible = false;
             // 
             // btnLog
             // 
@@ -82,14 +108,14 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(26, 198);
+            this.txtUsername.Location = new System.Drawing.Point(26, 191);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(214, 22);
             this.txtUsername.TabIndex = 4;
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(26, 274);
+            this.txtNewPassword.Location = new System.Drawing.Point(26, 265);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(214, 22);
             this.txtNewPassword.TabIndex = 3;
@@ -133,7 +159,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(807, 579);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnClose
             // 
@@ -160,7 +185,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ForgetPassword";
             this.Text = "ForgetPassword";
-            this.Load += new System.EventHandler(this.ForgetPassword_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -181,5 +205,7 @@
         private System.Windows.Forms.Button btnLog;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblValidPassword;
+        private System.Windows.Forms.Label lblValidUserName;
     }
 }

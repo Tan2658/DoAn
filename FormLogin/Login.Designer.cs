@@ -42,9 +42,11 @@
             this.panelAccount = new System.Windows.Forms.Panel();
             this.txtAccount = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.picLock = new System.Windows.Forms.PictureBox();
             this.picAccount = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -53,12 +55,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.label2);
@@ -117,6 +121,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.checkBox1);
             this.panel2.Controls.Add(this.btnForget);
             this.panel2.Controls.Add(this.btnLogin);
             this.panel2.Controls.Add(this.btnClose);
@@ -124,6 +129,7 @@
             this.panel2.Controls.Add(this.panelAccount);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.ForeColor = System.Drawing.Color.Black;
             this.panel2.Location = new System.Drawing.Point(300, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(600, 600);
@@ -135,7 +141,7 @@
             this.btnForget.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnForget.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnForget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnForget.Location = new System.Drawing.Point(176, 424);
+            this.btnForget.Location = new System.Drawing.Point(199, 464);
             this.btnForget.Name = "btnForget";
             this.btnForget.Size = new System.Drawing.Size(150, 45);
             this.btnForget.TabIndex = 5;
@@ -148,7 +154,7 @@
             this.btnLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.btnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(0, 424);
+            this.btnLogin.Location = new System.Drawing.Point(10, 464);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(170, 45);
             this.btnLogin.TabIndex = 4;
@@ -174,7 +180,7 @@
             this.panelPas.Controls.Add(this.pictureBox4);
             this.panelPas.Controls.Add(this.txtPassword);
             this.panelPas.Controls.Add(this.picLock);
-            this.panelPas.Location = new System.Drawing.Point(0, 331);
+            this.panelPas.Location = new System.Drawing.Point(0, 324);
             this.panelPas.Name = "panelPas";
             this.panelPas.Size = new System.Drawing.Size(588, 70);
             this.panelPas.TabIndex = 2;
@@ -183,10 +189,11 @@
             // 
             this.txtPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.txtPassword.Location = new System.Drawing.Point(95, 22);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(300, 15);
+            this.txtPassword.Size = new System.Drawing.Size(323, 23);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
@@ -198,7 +205,7 @@
             this.panelAccount.Controls.Add(this.txtAccount);
             this.panelAccount.Controls.Add(this.picAccount);
             this.panelAccount.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panelAccount.Location = new System.Drawing.Point(0, 255);
+            this.panelAccount.Location = new System.Drawing.Point(0, 232);
             this.panelAccount.Name = "panelAccount";
             this.panelAccount.Size = new System.Drawing.Size(588, 70);
             this.panelAccount.TabIndex = 1;
@@ -206,11 +213,11 @@
             // txtAccount
             // 
             this.txtAccount.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAccount.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAccount.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.txtAccount.Location = new System.Drawing.Point(95, 22);
             this.txtAccount.Name = "txtAccount";
-            this.txtAccount.Size = new System.Drawing.Size(323, 21);
+            this.txtAccount.Size = new System.Drawing.Size(346, 29);
             this.txtAccount.TabIndex = 1;
             this.txtAccount.Click += new System.EventHandler(this.txtAccount_Click);
             this.txtAccount.TextChanged += new System.EventHandler(this.txtAccount_TextChanged);
@@ -220,11 +227,22 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.label5.Location = new System.Drawing.Point(13, 117);
+            this.label5.Location = new System.Drawing.Point(21, 120);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(449, 49);
             this.label5.TabIndex = 0;
             this.label5.Text = "Login to your account";
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.checkBox1.Location = new System.Drawing.Point(10, 411);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(172, 31);
+            this.checkBox1.TabIndex = 6;
+            this.checkBox1.Text = "Lưu mật khẩu";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // pictureBox4
             // 
@@ -239,8 +257,8 @@
             // 
             // picLock
             // 
-            this.picLock.Image = global::FormLogin.Properties.Resources.picture_3;
-            this.picLock.Location = new System.Drawing.Point(10, 13);
+            this.picLock.Image = global::FormLogin.Properties.Resources.picture_3_removebg_preview;
+            this.picLock.Location = new System.Drawing.Point(10, 12);
             this.picLock.Name = "picLock";
             this.picLock.Size = new System.Drawing.Size(47, 50);
             this.picLock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -258,6 +276,16 @@
             this.picAccount.TabIndex = 0;
             this.picAccount.TabStop = false;
             this.picAccount.Click += new System.EventHandler(this.picAccount_Click);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::FormLogin.Properties.Resources._393445897_981564836269176_8077072744143297869_n;
+            this.pictureBox2.Location = new System.Drawing.Point(51, 422);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(206, 148);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 5;
+            this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -292,6 +320,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
@@ -317,6 +346,8 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Button btnForget;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

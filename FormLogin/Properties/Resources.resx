@@ -133,6 +133,9 @@
   <data name="30486218-dentist-receptionist-vertical" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Image\30486218-dentist-receptionist-vertical.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="pngtree-dental-clinic-logo-dental-logo-dental-cartoon-png-image_1915748" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\pngtree-dental-clinic-logo-dental-logo-dental-cartoon-png-image_1915748.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="picture-21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\picture-21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -163,10 +166,13 @@
   <data name="picture-3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\picture-3.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="393445897_981564836269176_8077072744143297869_n" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\393445897_981564836269176_8077072744143297869_n.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="noShowPas" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\noShowPas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="pngtree-dental-clinic-logo-dental-logo-dental-cartoon-png-image_1915748" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Image\pngtree-dental-clinic-logo-dental-logo-dental-cartoon-png-image_1915748.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="picture-3-removebg-preview" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Image\picture-3-removebg-preview.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
