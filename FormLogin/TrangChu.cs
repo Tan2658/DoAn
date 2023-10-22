@@ -33,9 +33,13 @@ namespace FormLogin
         {
 
         }
-
+        int indexPicture = 0;
+        int indexPicture2 = 6;
         private void FormTrangChu_Load(object sender, EventArgs e)
         {
+           
+            pictureBox1.Image = imageListTrangChu.Images[indexPicture];
+            pictureBox2.Image = imageListTrangChu.Images[indexPicture2];
             dateTimePicker1.Format = DateTimePickerFormat.Custom;
             dateTimePicker1.CustomFormat = "dd/MM/yyyy";
             dateTimePicker2.Format = DateTimePickerFormat.Custom;
@@ -521,6 +525,27 @@ namespace FormLogin
         {
           FormReportView formrp = new FormReportView();
          formrp.ShowDialog();
+        }
+      
+        private void timerTrangChu_Tick(object sender, EventArgs e)
+        {
+          
+            if (indexPicture > imageListTrangChu.Images.Count - 1)
+            {
+                indexPicture = 0;
+            }
+            if(indexPicture2 < 0)
+            {
+                indexPicture2 = imageListTrangChu.Images.Count -1;
+         
+            }
+            pictureBox1.Image = imageListTrangChu.Images[indexPicture++];
+            pictureBox2.Image = imageListTrangChu.Images[indexPicture2--];
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 }

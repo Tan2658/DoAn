@@ -206,6 +206,7 @@
   <ItemGroup>
     <None Include="Image\393445897_981564836269176_8077072744143297869_n.jpg" />
     <None Include="Image\picture-3-removebg-preview.png" />
+    <None Include="Image\DrAmeriWestpoint_0071_AuroraHDR2019-edit-Edit-scaled %281%29.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

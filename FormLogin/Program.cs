@@ -13,7 +13,7 @@ namespace FormLogin
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ForgetPassword());
+            Application.Run(new formLogin());
         }
     }
 }

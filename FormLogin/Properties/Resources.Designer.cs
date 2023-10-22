@@ -103,6 +103,26 @@ namespace FormLogin.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap DrAmeriWestpoint_0071_AuroraHDR2019_edit_Edit_scaled__1_ {
+            get {
+                object obj = ResourceManager.GetObject("DrAmeriWestpoint_0071_AuroraHDR2019-edit-Edit-scaled (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap DrAmeriWestpoint_0071_AuroraHDR2019_edit_Edit_scaled__1_1 {
+            get {
+                object obj = ResourceManager.GetObject("DrAmeriWestpoint_0071_AuroraHDR2019-edit-Edit-scaled (1)1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap graphs_37717_640 {
             get {
                 object obj = ResourceManager.GetObject("graphs-37717_640", resourceCulture);
