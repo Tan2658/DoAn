@@ -94,21 +94,90 @@ create table ChanDoan
 	TenChanDoan nvarchar(255) not null,
 	primary key (IDChanDoan)
 )
+insert into ChanDoan
+values
+('CAO', N'Cạo vôi răng'),
+('TAY', N'Tẩy trắng răng'),
+('NHO', N'Nhổ răng'),
+('TRM', N'Trám răng'),
+('NOI', N'Nội nha (chữa tủy)'),
+('RSU', N'Răng sứ'),
+('RTL', N'Răng tháo lắp'),
+('NIE', N'Niềng răng'),
+('IMP', N'Implant')
+
+if exists (select * from sys.objects where name ='DichVu')
+	drop table DichVu
+go
+create table DichVu
+(
+	IDDichVu char(4) not null,
+	IDChanDoan char(3) not null,
+	TenDichVu nvarchar(255) not null,
+	DonViTinh nvarchar(255) not null,
+	DonGia money not null,
+	primary key (IDDichVu),
+	constraint chk_IDChanDoan_DichVu foreign key (IDChanDoan) references ChanDoan(IDChanDoan)
+)
+insert into DichVu
+values
+('CA01', 'CAO', N'Toàn hàm', N'Lần', 300000.00),
+('TA01', 'TAY', N'Tại nhà', N'Lần', 300000.00),
+('TA02', 'TAY', N'Tại phòng', N'Lần', 400000.00),
+('NH01', 'NHO', N'Trước (1 chân)', N'Cái', 50000.00),
+('NH02', 'NHO', N'Hàm (nhiều chân)', N'Lần', 200000.00),
+('NH03', 'NHO', N'Khó', N'Cái', 50000.00),
+('NH04', 'NHO', N'Chân răng', N'Cái', 50000.00),
+('NH05', 'NHO', N'Lung lay', N'Cái', 50000.00),
+('NH06', 'NHO', N'Sữa', N'Cái', 50000.00),
+('NH07', 'NHO', N'Khôn hàm trên', N'Cái', 50000.00),
+('NH08', 'NHO', N'Khôn hàm dưới', N'Cái', 50000.00),
+('TR01', 'TRM', N'Sâu S1, S2', N'Cái', 50000.00),
+('TR02', 'TRM', N'Sâu S3', N'Cái', 50000.00),
+('TR03', 'TRM', N'Mòn cổ', N'Cái', 50000.00),
+('TR04', 'TRM', N'Kẽ răng thưa', N'Cái', 50000.00),
+('TR05', 'TRM', N'Đắp mặt', N'Cái', 50000.00),
+('TR06', 'TRM', N'Gắn đá kim cương', N'Cái', 50000.00),
+('NO01', 'NOI', N'Răng sữa (trẻ em)', N'Cái', 50000.00),
+('NO02', 'NOI', N'Răng cửa', N'Cái', 50000.00),
+('NO03', 'NOI', N'Răng tiền cối', N'Cái', 50000.00),
+('NO04', 'NOI', N'Răng cối', N'Cái', 50000.00),
+('NO05', 'NOI', N'Nội nha lại răng cửa', N'Cái', 50000.00),
+('NO06', 'NOI', N'Nội nha lại răng tiền cối', N'Cái', 50000.00),
+('NO07', 'NOI', N'Nội nha lại răng cối', N'Cái', 50000.00),
+('RS01', 'RSU', N'Kim loại', N'Cái', 50000.00),
+('RS02', 'RSU', N'Titan', N'Cái', 50000.00),
+('RS03', 'RSU', N'Toàn sứ', N'Cái', 50000.00),
+('RT01', 'RTL', N'Nền nhựa cứng bán hàm', N'Cái', 50000.00),
+('RT02', 'RTL', N'Nền nhựa cứng toàn hàm', N'Cái', 50000.00),
+('RT03', 'RTL', N'Nền nhựa mềm bán hàm', N'Cái', 50000.00),
+('RT04', 'RTL', N'Nền nhựa mềm toàn hàm', N'Cái', 50000.00),
+('RT05', 'RTL', N'Răng nhựa Việt Nam', N'Cái', 50000.00),
+('RT06', 'RTL', N'Răng nhựa ngoại', N'Cái', 50000.00),
+('RT07', 'RTL', N'Răng composite', N'Cái', 50000.00),
+('RT08', 'RTL', N'Răng sứ', N'Cái', 50000.00),
+('RT09', 'RTL', N'Hàm khung kim loại', N'Cái', 50000.00),
+('RT10', 'RTL', N'Hàm khung liên kết', N'Cái', 50000.00),
+('RT11', 'RTL', N'Hàm khung nhựa cứng', N'Cái', 50000.00),
+('RT12', 'RTL', N'Hàm khung nhựa mềm', N'Cái', 50000.00),
+('NI01', 'NIE', N'Mắc cài kim loại', N'Lần', 40000.00),
+('NI02', 'NIE', N'Mắc cài sứ', N'Lần', 30000.00),
+('IM01', 'IMP', N'Hàn quốc', N'Cái', 50000.00),
+('IM02', 'IMP', N'Ý', N'Cái', 50000.00),
+('IM03', 'IMP', N'Mỹ', N'Cái', 50000.00),
+('IM04', 'IMP', N'Khác', N'Cái', 50000.00)
 
 if exists (select * from sys.objects where name ='DieuTri')
 	drop table DieuTri
 go
 create table DieuTri
 (
-	IDChanDoan char(3) not null,
+	IDDichVu char(4) not null,
 	IDBenhNhan char(3) not null,
 	IDDungCu char(3) not null,
-	TenDieuTri nvarchar(255) not null,
-	DonViTinh nvarchar(255) not null,
 	SoLuong int not null,
-	DonGia money not null,
 	ThanhTien money not null,
-	constraint chk_IDChanDoan_DieuTri foreign key (IDChanDoan) references ChanDoan(IDChanDoan),
+	constraint chk_IDDichVu_DieuTri foreign key (IDDichVu) references DichVu(IDDichVu),
 	constraint chk_IDBenhNhan_DieuTri foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan),
 	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references DungCuNhaKhoa(IDDungCu),
 )
