@@ -12,7 +12,6 @@ namespace DAL.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ChanDoan()
         {
-            BenhNhan = new HashSet<BenhNhan>();
             DieuTri = new HashSet<DieuTri>();
         }
 
@@ -23,13 +22,6 @@ namespace DAL.Models
         [Required]
         [StringLength(255)]
         public string TenChanDoan { get; set; }
-
-        [Required]
-        [StringLength(3)]
-        public string IDBenhNhan { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BenhNhan> BenhNhan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DieuTri> DieuTri { get; set; }

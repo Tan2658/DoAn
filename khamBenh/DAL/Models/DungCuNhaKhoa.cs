@@ -9,6 +9,12 @@ namespace DAL.Models
     [Table("DungCuNhaKhoa")]
     public partial class DungCuNhaKhoa
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public DungCuNhaKhoa()
+        {
+            DieuTri = new HashSet<DieuTri>();
+        }
+
         [Required]
         [StringLength(50)]
         public string NoiDung { get; set; }
@@ -38,5 +44,8 @@ namespace DAL.Models
         public decimal ThanhTien { get; set; }
 
         public DateTime NgayNhap { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DieuTri> DieuTri { get; set; }
     }
 }

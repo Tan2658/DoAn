@@ -9,15 +9,13 @@ namespace DAL.Models
     [Table("HoaDon")]
     public partial class HoaDon
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public HoaDon()
-        {
-            BenhNhan = new HashSet<BenhNhan>();
-        }
-
         [Key]
         [StringLength(3)]
         public string IDHoaDon { get; set; }
+
+        [Required]
+        [StringLength(3)]
+        public string IDBenhNhan { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -44,7 +42,6 @@ namespace DAL.Models
         [Column(TypeName = "money")]
         public decimal TongTien { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BenhNhan> BenhNhan { get; set; }
+        public virtual BenhNhan BenhNhan { get; set; }
     }
 }

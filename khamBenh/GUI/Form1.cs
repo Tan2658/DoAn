@@ -18,8 +18,19 @@ namespace GUI
             InitializeComponent();
         }
 
+        private void FillBacsiCombo()
+        {
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
+            
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedTab.Text == "Danh sách khám bệnh")
+                ;
         }
     }
 }

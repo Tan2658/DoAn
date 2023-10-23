@@ -20,18 +20,18 @@ namespace DAL.Models
         public string TenThuoc { get; set; }
 
         [Key]
-        [Column(Order = 2)]
+        [Column(Order = 2, TypeName = "money")]
+        public decimal DonGia { get; set; }
+
+        [Key]
+        [Column(Order = 3)]
         [StringLength(255)]
         public string DonViTinh { get; set; }
 
         [Key]
-        [Column(Order = 3)]
+        [Column(Order = 4)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoLuong { get; set; }
-
-        [Key]
-        [Column(Order = 4, TypeName = "money")]
-        public decimal DonGia { get; set; }
 
         [Key]
         [Column(Order = 5, TypeName = "money")]
