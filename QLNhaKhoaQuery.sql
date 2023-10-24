@@ -214,12 +214,12 @@ create table DieuTri
 (
 	IDDichVu char(4) not null,
 	IDBenhNhan char(3) not null,
-	IDDungCu char(3) not null,
+	IDDungCu char(5) not null,
 	SoLuong int not null,
 	ThanhTien money not null,
 	constraint chk_IDDichVu_DieuTri foreign key (IDDichVu) references DichVu(IDDichVu),
 	constraint chk_IDBenhNhan_DieuTri foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan),
-	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references DungCuNhaKhoa(IDDungCu),
+	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references DungCuNhaKhoaNhap(IDDungCu),
 )
 
 if exists (select * from sys.objects where name ='DonThuoc')
