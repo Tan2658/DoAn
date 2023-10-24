@@ -37,7 +37,6 @@ namespace FormLogin
 
             if (txtUsername.Text == "" || txtNewPassword.Text == "")
             {
-                MessageBox.Show("Yêu cầu bạn nhập đầy đủ");
                 return false;
 
             }
@@ -70,16 +69,6 @@ namespace FormLogin
                 MessageBox.Show(ex.Message);
             }
         }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ForgetPassword_Load(object sender, EventArgs e)
-        {
-        }
-
         private void btnLog_Click(object sender, EventArgs e)
         {
                 this.Close();

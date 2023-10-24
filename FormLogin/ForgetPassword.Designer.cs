@@ -82,14 +82,14 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(26, 198);
+            this.txtUsername.Location = new System.Drawing.Point(26, 191);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(214, 22);
             this.txtUsername.TabIndex = 4;
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(26, 274);
+            this.txtNewPassword.Location = new System.Drawing.Point(26, 265);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(214, 22);
             this.txtNewPassword.TabIndex = 3;
@@ -133,7 +133,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(807, 579);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // btnClose
             // 
@@ -160,7 +159,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "ForgetPassword";
             this.Text = "ForgetPassword";
-            this.Load += new System.EventHandler(this.ForgetPassword_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
