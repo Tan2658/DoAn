@@ -11,8 +11,8 @@ namespace DAL.Models
     {
         [Key]
         [Column(Order = 0)]
-        [StringLength(3)]
-        public string IDChanDoan { get; set; }
+        [StringLength(4)]
+        public string IDDichVu { get; set; }
 
         [Key]
         [Column(Order = 1)]
@@ -26,30 +26,16 @@ namespace DAL.Models
 
         [Key]
         [Column(Order = 3)]
-        [StringLength(255)]
-        public string TenDieuTri { get; set; }
-
-        [Key]
-        [Column(Order = 4)]
-        [StringLength(255)]
-        public string DonViTinh { get; set; }
-
-        [Key]
-        [Column(Order = 5)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int SoLuong { get; set; }
 
         [Key]
-        [Column(Order = 6, TypeName = "money")]
-        public decimal DonGia { get; set; }
-
-        [Key]
-        [Column(Order = 7, TypeName = "money")]
+        [Column(Order = 4, TypeName = "money")]
         public decimal ThanhTien { get; set; }
 
         public virtual BenhNhan BenhNhan { get; set; }
 
-        public virtual ChanDoan ChanDoan { get; set; }
+        public virtual DichVu DichVu { get; set; }
 
         public virtual DungCuNhaKhoa DungCuNhaKhoa { get; set; }
     }

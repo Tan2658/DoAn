@@ -15,10 +15,10 @@ namespace DAL.Models
         public virtual DbSet<BacSi> BacSi { get; set; }
         public virtual DbSet<BenhNhan> BenhNhan { get; set; }
         public virtual DbSet<ChanDoan> ChanDoan { get; set; }
+        public virtual DbSet<DichVu> DichVu { get; set; }
         public virtual DbSet<DonThuoc> DonThuoc { get; set; }
         public virtual DbSet<DungCuNhaKhoa> DungCuNhaKhoa { get; set; }
         public virtual DbSet<HoaDon> HoaDon { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
         public virtual DbSet<CanLamSang> CanLamSang { get; set; }
         public virtual DbSet<CTDonThuoc> CTDonThuoc { get; set; }
@@ -90,8 +90,27 @@ namespace DAL.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<ChanDoan>()
-                .HasMany(e => e.DieuTri)
+                .HasMany(e => e.DichVu)
                 .WithRequired(e => e.ChanDoan)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<DichVu>()
+                .Property(e => e.IDDichVu)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DichVu>()
+                .Property(e => e.IDChanDoan)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<DichVu>()
+                .Property(e => e.DonGia)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<DichVu>()
+                .HasMany(e => e.DieuTri)
+                .WithRequired(e => e.DichVu)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<DonThuoc>()
@@ -182,7 +201,7 @@ namespace DAL.Models
                 .HasPrecision(19, 4);
 
             modelBuilder.Entity<DieuTri>()
-                .Property(e => e.IDChanDoan)
+                .Property(e => e.IDDichVu)
                 .IsFixedLength()
                 .IsUnicode(false);
 
@@ -195,10 +214,6 @@ namespace DAL.Models
                 .Property(e => e.IDDungCu)
                 .IsFixedLength()
                 .IsUnicode(false);
-
-            modelBuilder.Entity<DieuTri>()
-                .Property(e => e.DonGia)
-                .HasPrecision(19, 4);
 
             modelBuilder.Entity<DieuTri>()
                 .Property(e => e.ThanhTien)

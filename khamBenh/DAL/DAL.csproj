@@ -59,11 +59,11 @@
     <Compile Include="Models\ChanDoan.cs" />
     <Compile Include="Models\CTDonThuoc.cs" />
     <Compile Include="Models\DentalContextDB.cs" />
+    <Compile Include="Models\DichVu.cs" />
     <Compile Include="Models\DieuTri.cs" />
     <Compile Include="Models\DonThuoc.cs" />
     <Compile Include="Models\DungCuNhaKhoa.cs" />
     <Compile Include="Models\HoaDon.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
     <Compile Include="Models\TaiKhoan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
