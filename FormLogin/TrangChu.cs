@@ -13,6 +13,8 @@ using System.Runtime.Remoting.Contexts;
 using System.Drawing.Imaging;
 using System.Xml.Linq;
 using Microsoft.Reporting.WinForms;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace FormLogin
 {
@@ -31,7 +33,8 @@ namespace FormLogin
 
         private void khámBệnhToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            tabTrangChu.Visible = true;
+            tabNguoiDung.Parent = null;
         }
         int indexPicture = 0;
         int indexPicture2 = 6;
@@ -55,7 +58,9 @@ namespace FormLogin
 
         private void menustripNguoiDung_Click(object sender, EventArgs e)
         {
-
+           // tabNguoiDung.Parent = tabTrangChu;
+            tabTrangChu.Visible = true;
+            tabTiepNhan.Parent = null;
         }
 
         private void menustripNguoiDung_MouseEnter(object sender, EventArgs e)
@@ -316,21 +321,60 @@ namespace FormLogin
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private string RemoveDiacritics(string text)
+        {
+            string formD = text.Normalize(NormalizationForm.FormD);
+            StringBuilder sb = new StringBuilder();
+
+            foreach (char ch in formD)
+            {
+                UnicodeCategory uc = CharUnicodeInfo.GetUnicodeCategory(ch);
+                if (uc != UnicodeCategory.NonSpacingMark)
+                {
+                    sb.Append(ch);
+                }
+            }
+
+            return sb.ToString().Normalize(NormalizationForm.FormC);
+        }
 
         private void btnTim_Click(object sender, EventArgs e)
         {
-            if (cbTimKiemBN.Checked)
+            try
             {
-                int starMonth = Convert.ToInt32(dateTimePicker1.Value.Month);
-                int endMonth = Convert.ToInt32(dateTimePicker2.Value.Month);
-                var listBNbyMonth = benhnhan.FindBenhNhanWithMonth(starMonth, endMonth);
-                dgvBenhNhan.Rows.Clear();
-                foreach (var item in listBNbyMonth)
+                if (cbTimKiemBN.Checked)
                 {
+                    int starMonth = Convert.ToInt32(dateTimePicker1.Value.Month);
+                    int endMonth = Convert.ToInt32(dateTimePicker2.Value.Month);
+                    var listBNbyMonth = benhnhan.FindBenhNhanWithMonth(starMonth, endMonth);
+                    dgvBenhNhan.Rows.Clear();
+                    foreach (var item in listBNbyMonth)
+                    {
+                        int index = dgvBenhNhan.Rows.Add();
+                        dgvBenhNhan.Rows[index].Cells[0].Value = item.IDBenhNhan;
+                        dgvBenhNhan.Rows[index].Cells[1].Value = item.HoTen;
+                        if (item.Gioi == false)
+                        {
+                            dgvBenhNhan.Rows[index].Cells[2].Value = "Nữ";
+
+                        }
+                        else
+                        {
+                            dgvBenhNhan.Rows[index].Cells[2].Value = "Nam";
+                        }
+                        dgvBenhNhan.Rows[index].Cells[3].Value = item.NamSinh;
+                        dgvBenhNhan.Rows[index].Cells[4].Value = item.SDT;
+                        dgvBenhNhan.Rows[index].Cells[5].Value = item.DiaChi;
+                    }
+                }
+                else if (txtNameBN.Text == "")
+                {
+                    BenhNhan IDBenhNhan = benhnhan.FindIDBenhNhan(txtIDBN.Text);
+                    dgvBenhNhan.Rows.Clear();
                     int index = dgvBenhNhan.Rows.Add();
-                    dgvBenhNhan.Rows[index].Cells[0].Value = item.IDBenhNhan;
-                    dgvBenhNhan.Rows[index].Cells[1].Value = item.HoTen;
-                    if (item.Gioi == false)
+                    dgvBenhNhan.Rows[index].Cells[0].Value = IDBenhNhan.IDBenhNhan;
+                    dgvBenhNhan.Rows[index].Cells[1].Value = IDBenhNhan.HoTen;
+                    if (IDBenhNhan.Gioi == false)
                     {
                         dgvBenhNhan.Rows[index].Cells[2].Value = "Nữ";
 
@@ -339,11 +383,36 @@ namespace FormLogin
                     {
                         dgvBenhNhan.Rows[index].Cells[2].Value = "Nam";
                     }
-                    dgvBenhNhan.Rows[index].Cells[3].Value = item.NamSinh;
-                    dgvBenhNhan.Rows[index].Cells[4].Value = item.SDT;
-                    dgvBenhNhan.Rows[index].Cells[5].Value = item.DiaChi;
+                    dgvBenhNhan.Rows[index].Cells[3].Value = IDBenhNhan.NamSinh;
+                    dgvBenhNhan.Rows[index].Cells[4].Value = IDBenhNhan.SDT;
+                    dgvBenhNhan.Rows[index].Cells[5].Value = IDBenhNhan.DiaChi;
                 }
+                else
+                {
+                    for (int i = 0; i < dgvBenhNhan.Rows.Count; i++)
+                    {
+                        string name = dgvBenhNhan.Rows[i].Cells[1].Value.ToString();
+                        string findName = txtNameBN.Text;
 
+                        name = RemoveDiacritics(name);
+                        findName = RemoveDiacritics(findName);
+
+                        bool contains = name.IndexOf(findName, StringComparison.OrdinalIgnoreCase) >= 0;
+                        if (contains)
+                        {
+                            dgvBenhNhan.Rows[i].Visible = true;
+                        }
+                        else
+                        {
+                            dgvBenhNhan.Rows[i].Visible = false;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Tìm thấy bệnh nhân thành công");
             }
         }
         private bool checkDataFields()
@@ -470,8 +539,11 @@ namespace FormLogin
             string col = dgvBenhNhan.Columns[e.ColumnIndex].Name;
             if (col == "Column14")
             {
+                   // BenhNhan dbDelete = benhnhan.FindIDBenhNhan(dgvBenhNhan.Rows[e.RowIndex].Cells[0].Value.ToString());
                     dgvBenhNhanDangKi.Rows.Add(rowCount.ToString(), dgvBenhNhan.Rows[e.RowIndex].Cells[0].Value.ToString(), dgvBenhNhan.Rows[e.RowIndex].Cells[1].Value.ToString(), dgvBenhNhan.Rows[e.RowIndex].Cells[3].Value.ToString(), dgvBenhNhan.Rows[e.RowIndex].Cells[4].Value.ToString(), dgvBenhNhan.Rows[e.RowIndex].Cells[5].Value.ToString(), "0 đồng".ToString());
-                    dgvBenhNhan.Rows.RemoveAt(dgvBenhNhan.CurrentRow.Index);
+                    dgvBenhNhan.Rows.Remove(dgvBenhNhan.CurrentRow);
+                   // db1.BenhNhans.Remove(dbDelete); // Xóa ở DB
+                    db1.SaveChanges();
                 MessageBox.Show("Đăng kí khám thành công");
             }
         }
@@ -480,22 +552,26 @@ namespace FormLogin
         {
             try
             {
-                for(int i = 0; i < dgvBenhNhanDangKi.Rows.Count; i++)
+                if (dgvBenhNhan.Rows.Count > 0)
                 {
-                    if (dgvBenhNhanDangKi.Rows[i].Cells[1].Value.ToString() == txtIDBN.Text)
+                  
+                    for (int i = 0; i < dgvBenhNhanDangKi.Rows.Count; i++)
                     {
-                        BenhNhan s = benhnhan.FindIDBenhNhan(txtIDBN.Text);
-                        dgvBenhNhan.Rows.Add(s.IDBenhNhan, s.HoTen, s.Gioi == false ? "Nữ" : "Nam", s.NamSinh, s.SDT, s.DiaChi);
-                        int rowIndex = dgvBenhNhanDangKi.SelectedRows[i].Index;
-                        dgvBenhNhanDangKi.Rows.RemoveAt(rowIndex);
-                        MessageBox.Show("Trả bệnh nhân thành công !");
+                        if (dgvBenhNhanDangKi.Rows[i].Cells[1].Value.ToString() == txtIDBN.Text)
+                        {
+                            BenhNhan s = benhnhan.FindIDBenhNhan(txtIDBN.Text);
+                            dgvBenhNhan.Rows.Insert(dgvBenhNhan.Rows.Count - 1,s.IDBenhNhan, s.HoTen, s.Gioi == false ? "Nữ" : "Nam", s.NamSinh, s.SDT, s.DiaChi);
+                            int rowIndex = dgvBenhNhanDangKi.SelectedRows[i].Index;
+                            dgvBenhNhanDangKi.Rows.RemoveAt(rowIndex);
+                            MessageBox.Show("Trả bệnh nhân thành công !");
+                        }
                     }
                 }
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show(ex.Message);
+               MessageBox.Show(ex.Message);
             }
         }
 
@@ -546,6 +622,34 @@ namespace FormLogin
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
+        }
+
+        private void txtNameBN_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tabTrangChu.Visible = false;
+        }
+
+        private void menustripKhamBenh_Click(object sender, EventArgs e)
+        {
+            tabTrangChu.Visible = true;
+            tabNguoiDung.Parent = null;
+        }
+
+        private void menustripThuoc_Click(object sender, EventArgs e)
+        {
+            tabTrangChu.Visible = true;
+            tabTiepNhan.Parent = null;
+        }
+
+        private void menustripThongKe_Click(object sender, EventArgs e)
+        {
+            tabTrangChu.Visible = true;
+            tabTiepNhan.Parent = null;
         }
     }
 }

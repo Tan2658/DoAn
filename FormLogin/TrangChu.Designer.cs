@@ -73,6 +73,13 @@
             this.col7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.col8 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dgvNguoiDung = new System.Windows.Forms.DataGridView();
+            this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colKinhNghiem = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMoTa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSort = new System.Windows.Forms.Button();
             this.tabTiepNhan = new System.Windows.Forms.TabPage();
             this.btnLoadBN = new System.Windows.Forms.Button();
@@ -131,13 +138,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.imageListTrangChu = new System.Windows.Forms.ImageList(this.components);
-            this.colTrangThai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPhone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAccount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colKinhNghiem = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMoTa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button2 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -203,6 +204,7 @@
             this.menustripKhamBenh.Name = "menustripKhamBenh";
             this.menustripKhamBenh.Size = new System.Drawing.Size(118, 24);
             this.menustripKhamBenh.Text = "Khám Bệnh";
+            this.menustripKhamBenh.Click += new System.EventHandler(this.menustripKhamBenh_Click);
             this.menustripKhamBenh.MouseEnter += new System.EventHandler(this.menustripKhamBenh_MouseEnter);
             this.menustripKhamBenh.MouseLeave += new System.EventHandler(this.menustripKhamBenh_MouseLeave);
             // 
@@ -212,6 +214,7 @@
             this.menustripThuoc.Name = "menustripThuoc";
             this.menustripThuoc.Size = new System.Drawing.Size(121, 24);
             this.menustripThuoc.Text = "Dược vật tư";
+            this.menustripThuoc.Click += new System.EventHandler(this.menustripThuoc_Click);
             this.menustripThuoc.MouseEnter += new System.EventHandler(this.menustripThuoc_MouseEnter);
             this.menustripThuoc.MouseLeave += new System.EventHandler(this.menustripThuoc_MouseLeave);
             // 
@@ -221,6 +224,7 @@
             this.menustripThongKe.Name = "menustripThongKe";
             this.menustripThongKe.Size = new System.Drawing.Size(106, 24);
             this.menustripThongKe.Text = "Thống Kê";
+            this.menustripThongKe.Click += new System.EventHandler(this.menustripThongKe_Click);
             this.menustripThongKe.MouseEnter += new System.EventHandler(this.menustripThongKe_MouseEnter);
             this.menustripThongKe.MouseLeave += new System.EventHandler(this.menustripThongKe_MouseLeave);
             // 
@@ -390,7 +394,7 @@
             // 
             this.tabTrangChu.Controls.Add(this.tabNguoiDung);
             this.tabTrangChu.Controls.Add(this.tabTiepNhan);
-            this.tabTrangChu.Location = new System.Drawing.Point(0, 67);
+            this.tabTrangChu.Location = new System.Drawing.Point(3, 64);
             this.tabTrangChu.Name = "tabTrangChu";
             this.tabTrangChu.SelectedIndex = 0;
             this.tabTrangChu.Size = new System.Drawing.Size(1528, 654);
@@ -400,6 +404,7 @@
             // 
             // tabNguoiDung
             // 
+            this.tabNguoiDung.Controls.Add(this.button2);
             this.tabNguoiDung.Controls.Add(this.groupBox2);
             this.tabNguoiDung.Controls.Add(this.btnLoad);
             this.tabNguoiDung.Controls.Add(this.groupBox1);
@@ -610,6 +615,61 @@
             this.dgvNguoiDung.Size = new System.Drawing.Size(1505, 230);
             this.dgvNguoiDung.TabIndex = 0;
             this.dgvNguoiDung.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvNguoiDung_CellFormatting);
+            // 
+            // colTrangThai
+            // 
+            this.colTrangThai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colTrangThai.HeaderText = "Trạng Thái";
+            this.colTrangThai.MinimumWidth = 6;
+            this.colTrangThai.Name = "colTrangThai";
+            this.colTrangThai.Width = 102;
+            // 
+            // colName
+            // 
+            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colName.HeaderText = "Họ Tên";
+            this.colName.MinimumWidth = 6;
+            this.colName.Name = "colName";
+            this.colName.Width = 81;
+            // 
+            // colPhone
+            // 
+            this.colPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colPhone.HeaderText = "SDT";
+            this.colPhone.MinimumWidth = 6;
+            this.colPhone.Name = "colPhone";
+            this.colPhone.Width = 64;
+            // 
+            // colAccount
+            // 
+            this.colAccount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colAccount.HeaderText = "Tài Khoản";
+            this.colAccount.MinimumWidth = 6;
+            this.colAccount.Name = "colAccount";
+            this.colAccount.Width = 97;
+            // 
+            // colPassword
+            // 
+            this.colPassword.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colPassword.HeaderText = "Mật Khẩu";
+            this.colPassword.MinimumWidth = 6;
+            this.colPassword.Name = "colPassword";
+            this.colPassword.Width = 91;
+            // 
+            // colKinhNghiem
+            // 
+            this.colKinhNghiem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.colKinhNghiem.HeaderText = "Kinh Nghiệm";
+            this.colKinhNghiem.MinimumWidth = 6;
+            this.colKinhNghiem.Name = "colKinhNghiem";
+            this.colKinhNghiem.Width = 111;
+            // 
+            // colMoTa
+            // 
+            this.colMoTa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMoTa.HeaderText = "Mô Tả";
+            this.colMoTa.MinimumWidth = 6;
+            this.colMoTa.Name = "colMoTa";
             // 
             // btnSort
             // 
@@ -996,6 +1056,7 @@
             this.txtNameBN.Name = "txtNameBN";
             this.txtNameBN.Size = new System.Drawing.Size(188, 22);
             this.txtNameBN.TabIndex = 14;
+            this.txtNameBN.TextChanged += new System.EventHandler(this.txtNameBN_TextChanged);
             // 
             // dateTimePicker2
             // 
@@ -1176,60 +1237,15 @@
         "628-3045.jpg");
             this.imageListTrangChu.Images.SetKeyName(6, "vertical-top-view-shot-female-dentist-working-with-patient_130388-2224.jpg");
             // 
-            // colTrangThai
+            // button2
             // 
-            this.colTrangThai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colTrangThai.HeaderText = "Trạng Thái";
-            this.colTrangThai.MinimumWidth = 6;
-            this.colTrangThai.Name = "colTrangThai";
-            this.colTrangThai.Width = 102;
-            // 
-            // colName
-            // 
-            this.colName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colName.HeaderText = "Họ Tên";
-            this.colName.MinimumWidth = 6;
-            this.colName.Name = "colName";
-            this.colName.Width = 81;
-            // 
-            // colPhone
-            // 
-            this.colPhone.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colPhone.HeaderText = "SDT";
-            this.colPhone.MinimumWidth = 6;
-            this.colPhone.Name = "colPhone";
-            this.colPhone.Width = 64;
-            // 
-            // colAccount
-            // 
-            this.colAccount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colAccount.HeaderText = "Tài Khoản";
-            this.colAccount.MinimumWidth = 6;
-            this.colAccount.Name = "colAccount";
-            this.colAccount.Width = 97;
-            // 
-            // colPassword
-            // 
-            this.colPassword.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colPassword.HeaderText = "Mật Khẩu";
-            this.colPassword.MinimumWidth = 6;
-            this.colPassword.Name = "colPassword";
-            this.colPassword.Width = 91;
-            // 
-            // colKinhNghiem
-            // 
-            this.colKinhNghiem.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.colKinhNghiem.HeaderText = "Kinh Nghiệm";
-            this.colKinhNghiem.MinimumWidth = 6;
-            this.colKinhNghiem.Name = "colKinhNghiem";
-            this.colKinhNghiem.Width = 111;
-            // 
-            // colMoTa
-            // 
-            this.colMoTa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMoTa.HeaderText = "Mô Tả";
-            this.colMoTa.MinimumWidth = 6;
-            this.colMoTa.Name = "colMoTa";
+            this.button2.Location = new System.Drawing.Point(1048, 27);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(146, 36);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "1";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // FormTrangChu
             // 
@@ -1399,5 +1415,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colPassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn colKinhNghiem;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMoTa;
+        private System.Windows.Forms.Button button2;
     }
 }
