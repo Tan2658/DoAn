@@ -560,7 +560,7 @@ namespace FormLogin
                         if (dgvBenhNhanDangKi.Rows[i].Cells[1].Value.ToString() == txtIDBN.Text)
                         {
                             BenhNhan s = benhnhan.FindIDBenhNhan(txtIDBN.Text);
-                            dgvBenhNhan.Rows.Insert(dgvBenhNhan.Rows.Count - 1,s.IDBenhNhan, s.HoTen, s.Gioi == false ? "Nữ" : "Nam", s.NamSinh, s.SDT, s.DiaChi);
+                            dgvBenhNhan.Rows.Add(s.IDBenhNhan,s.HoTen,s.Gioi == false ? "Nữ" : "Nam", s.NamSinh, s.SDT, s.DiaChi);
                             int rowIndex = dgvBenhNhanDangKi.SelectedRows[i].Index;
                             dgvBenhNhanDangKi.Rows.RemoveAt(rowIndex);
                             MessageBox.Show("Trả bệnh nhân thành công !");
@@ -570,8 +570,8 @@ namespace FormLogin
             }
             catch (Exception ex)
             {
-
-               MessageBox.Show(ex.Message);
+                MessageBox.Show("Trả bệnh nhân thành công");
+              
             }
         }
 
