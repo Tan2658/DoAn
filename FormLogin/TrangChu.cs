@@ -13,20 +13,29 @@ using System.Runtime.Remoting.Contexts;
 using System.Drawing.Imaging;
 using System.Xml.Linq;
 using Microsoft.Reporting.WinForms;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace FormLogin
 {
     public partial class FormTrangChu : Form
     {
+        private readonly VatTuService ms = new VatTuService();
         private readonly NguoiDungService nguoidung = new NguoiDungService();
         private readonly TaiKhoanService taikhoan = new TaiKhoanService();
         private readonly BenhNhanService benhnhan  =new BenhNhanService();
         ReportDataSource rp = new ReportDataSource();
-        DentalContextDB1 db1 = new DentalContextDB1();
+        DentalContextDB db1 = new DentalContextDB();
         DentalContextDB db = new DentalContextDB();
+        FormTrangChu frm;
         public FormTrangChu()
         {
             InitializeComponent();
+        }
+        public FormTrangChu(FormTrangChu frm)
+        {
+            InitializeComponent();
+            this.frm = frm;
         }
 
         private void khámBệnhToolStripMenuItem_Click(object sender, EventArgs e)
@@ -116,11 +125,10 @@ namespace FormLogin
                 int index = dgvNguoiDung.Rows.Add();
                 dgvNguoiDung.Rows[index].Cells[0].Value = item.TrangThai;
                 dgvNguoiDung.Rows[index].Cells[1].Value = item.Ten;
-                dgvNguoiDung.Rows[index].Cells[2].Value = item.STD;
+                dgvNguoiDung.Rows[index].Cells[2].Value = item.SDT;
                 dgvNguoiDung.Rows[index].Cells[3].Value = item.TenDangNhap;
-                dgvNguoiDung.Rows[index].Cells[4].Value = item.MatKhau;
                 dgvNguoiDung.Rows[index].Cells[5].Value = item.KinhNghiem;
-                dgvNguoiDung.Rows[index].Cells[6].Value = item.Mota;
+                dgvNguoiDung.Rows[index].Cells[6].Value = item.MoTa;
             }
         }
         private void FillRegister(List<BacSi> list)
@@ -131,11 +139,10 @@ namespace FormLogin
                 int index = dgvDangKi.Rows.Add();
                 dgvDangKi.Rows[index].Cells[0].Value = item.TrangThai;
                 dgvDangKi.Rows[index].Cells[1].Value = item.Ten;
-                dgvDangKi.Rows[index].Cells[2].Value = item.STD;
+                dgvDangKi.Rows[index].Cells[2].Value = item.SDT;
                 dgvDangKi.Rows[index].Cells[3].Value = item.TenDangNhap;
-                dgvDangKi.Rows[index].Cells[4].Value = item.MatKhau;
                 dgvDangKi.Rows[index].Cells[5].Value = item.KinhNghiem;
-                dgvDangKi.Rows[index].Cells[6].Value = item.Mota;
+                dgvDangKi.Rows[index].Cells[6].Value = item.MoTa;
             }
         }
         private void FillBenhNhan(List<BenhNhan> list)
@@ -235,11 +242,10 @@ namespace FormLogin
                     int index = dgvDangKi.Rows.Add();
                     dgvDangKi.Rows[index].Cells[0].Value = bs.TrangThai.ToString();
                     dgvDangKi.Rows[index].Cells[1].Value = bs.Ten.ToString();
-                    dgvDangKi.Rows[index].Cells[2].Value = bs.STD.ToString();
+                    dgvDangKi.Rows[index].Cells[2].Value = bs.SDT.ToString();
                     dgvDangKi.Rows[index].Cells[3].Value = bs.TenDangNhap.ToString();
-                    dgvDangKi.Rows[index].Cells[4].Value = bs.MatKhau.ToString();
-                    dgvDangKi.Rows[index].Cells[5].Value = bs.KinhNghiem.ToString();
-                    dgvDangKi.Rows[index].Cells[6].Value = bs.Mota.ToString();
+                    dgvDangKi.Rows[index].Cells[4].Value = bs.KinhNghiem.ToString();
+                    dgvDangKi.Rows[index].Cells[5].Value = bs.MoTa.ToString();
                 }
                 else
                 {
@@ -248,11 +254,10 @@ namespace FormLogin
                     int index = dgvNguoiDung.Rows.Add();
                     dgvNguoiDung.Rows[index].Cells[0].Value = bs.TrangThai.ToString();
                     dgvNguoiDung.Rows[index].Cells[1].Value = bs.Ten.ToString();
-                    dgvNguoiDung.Rows[index].Cells[2].Value = bs.STD.ToString();
+                    dgvNguoiDung.Rows[index].Cells[2].Value = bs.SDT.ToString();
                     dgvNguoiDung.Rows[index].Cells[3].Value = bs.TenDangNhap.ToString();
-                    dgvNguoiDung.Rows[index].Cells[4].Value = bs.MatKhau.ToString();
-                    dgvNguoiDung.Rows[index].Cells[5].Value = bs.KinhNghiem.ToString();
-                    dgvNguoiDung.Rows[index].Cells[6].Value = bs.Mota.ToString();
+                    dgvNguoiDung.Rows[index].Cells[4].Value = bs.KinhNghiem.ToString();
+                    dgvNguoiDung.Rows[index].Cells[5].Value = bs.MoTa.ToString();
                 }
             }
             catch (Exception ex)
@@ -522,5 +527,337 @@ namespace FormLogin
           FormReportView formrp = new FormReportView();
          formrp.ShowDialog();
         }
+
+        private void menustripThuoc_Click(object sender, EventArgs e)
+        {
+            tabTrangChu.Show();
+            tabVatTu.Visible = true;
+        }
+        private DentalContextDB context = new DentalContextDB();
+        private int GetSelectedRow(string id)
+        {
+            for (int i = 0; i < dgvVatTuInput.Rows.Count; i++)
+            {
+                if (dgvVatTuInput.Rows[i].Cells[0].Value.ToString() == id)
+                {
+                    return i;
+                }
+            }
+            return -1;
+        }
+        private void BindGridNhap(List<DungCuNhaKhoa> Medics)
+        {
+            dgvVatTuInput.Rows.Clear();
+            foreach (var Medic in Medics)
+            {
+                int index = dgvVatTuInput.Rows.Add();
+                if(Medic.NoiDung== false)
+                {
+                    dgvVatTuInput.Rows[index].Cells[0].Value = "Xuất";
+                }
+                else
+                {
+                    dgvVatTuInput.Rows[index].Cells[0].Value = "Nhập";
+                }
+                dgvVatTuInput.Rows[index].Cells[1].Value = Medic.IDDungCu;
+                dgvVatTuInput.Rows[index].Cells[2].Value = Medic.TenDungCu.ToString();
+                dgvVatTuInput.Rows[index].Cells[3].Value = Medic.Loai.ToString();
+                dgvVatTuInput.Rows[index].Cells[4].Value = Medic.DonViTinh.ToString();
+                dgvVatTuInput.Rows[index].Cells[5].Value = Medic.SoLuongNhap.ToString();
+                dgvVatTuInput.Rows[index].Cells[6].Value = Medic.Don.ToString();
+                dgvVatTuInput.Rows[index].Cells[7].Value = Medic.ThanhTien.ToString();
+                dgvVatTuInput.Rows[index].Cells[8].Value = Medic.NgayNhap.ToString();
+
+            }
+        }
+        private bool checkDataFieldsMedic()
+        {
+            if (txtMa.Text == "" || txtTen.Text == "" || txtPrice.Text == "" || txtSL.Text == "")
+            {
+                MessageBox.Show("Vui long nhap day du thong tin");
+                return false;
+            }
+
+            return true;
+        }
+        private void btnNhapThem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int selectRow = GetSelectedRow(txtMa.Text);
+                if (checkDataFieldsMedic () == true)
+                {
+                    int sl = Convert.ToInt32(txtSL.Text);
+                    int donGia = Convert.ToInt32(txtPrice.Text);
+                    if (selectRow == -1)
+                    {
+                        DungCuNhaKhoa d = new DungCuNhaKhoa()
+                        {
+                            NoiDung=  rdoNhap.Checked ? true : false,
+                            IDDungCu = txtMa.Text,
+                            TenDungCu = txtTen.Text,
+                            Loai = cboLoai.Text,
+                            DonViTinh = cboDVT.Text,
+                            SoLuongNhap = int.Parse(txtSL.Text),
+                            Don = decimal.Parse(txtPrice.Text),
+                            ThanhTien = decimal.Parse((sl * donGia).ToString()),
+                            NgayNhap = dtpNhap.Value
+                        };
+                        if (rdoNhap.Checked == true && ms.FindID(txtMa.Text) == null)
+                        {
+                            Kho kho = new Kho()
+                            {
+                                IDDungCu = txtMa.Text,
+                                TenDungCu = txtTen.Text,
+                                Loai = cboLoai.Text,
+                                DonViTinh = cboDVT.Text,
+                                SoLuong = int.Parse(txtSL.Text),
+                                Don = decimal.Parse(txtPrice.Text),
+                            };
+                            ms.InsertUpdate(kho);
+                        }
+                        if(rdoXuat.Checked== true   &&  ms.FindID(txtMa.Text)  != null  )
+                        {
+                            var id = dgvVatTuInput.SelectedCells[0].OwningRow.Cells[1].Value.ToString();
+                            Kho k = context.Khoes.Find(id);
+                            if (k.SoLuong < int.Parse(txtSL.Text))
+                            {
+                                MessageBox.Show("Số lượng xuất lớn hơn số lượng tồn");
+                            }
+                            k.SoLuong = k.SoLuong-int.Parse(txtSL.Text);
+                            context.SaveChanges();
+                            clearContentVatTuNhap();
+                        }
+                        ms.InsertUpdate(d);
+                        MessageBox.Show("Thêm dữ liệu thành công", "Thông báo", MessageBoxButtons.OK);
+                        List<DungCuNhaKhoa> listMedic = context.DungCuNhaKhoas.ToList();
+                        BindGridNhap(listMedic);
+                        clearContentVatTuNhap();
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
+        public void clearContentVatTuNhap()
+        {
+            txtMa.Text = string.Empty;
+            txtTen.Text = string.Empty;
+            txtSL.Text = string.Empty;
+            cboDVT.SelectedIndex = -1;
+            txtPrice.Text = string.Empty;
+        }
+
+        private void dgvVatTuInput_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvVatTuInput.SelectedRows.Count > 0)
+            {
+                string s = dgvVatTuInput.Rows[e.RowIndex].Cells[0].Value.ToString();
+                if (s == "Nhập")
+                {
+                    rdoNhap.Checked= true;
+                }
+                else
+                {
+                    rdoXuat.Checked= true;
+                }
+                txtMa.Text = dgvVatTuInput.Rows[e.RowIndex].Cells[1].Value.ToString();
+                txtTen.Text = dgvVatTuInput.Rows[e.RowIndex].Cells[2].Value.ToString();
+                cboLoai.Text = dgvVatTuInput.Rows[e.RowIndex].Cells[3].Value.ToString();
+                cboDVT.Text = dgvVatTuInput.Rows[e.RowIndex].Cells[4].Value.ToString();
+                txtSL.Text = dgvVatTuInput.Rows[e.RowIndex].Cells[5].Value.ToString();
+                txtPrice.Text = dgvVatTuInput.Rows[e.RowIndex].Cells[6].Value.ToString();
+                dtpNhap.Value = DateTime.Parse(dgvVatTuInput.Rows[e.RowIndex].Cells[8].Value.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Can chon vao dong ban muon sua");
+            }
+        }
+
+        
+        private void btnXoaNhap_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string ID = txtMa.Text;
+
+                DungCuNhaKhoa dbDelete = context.DungCuNhaKhoas.FirstOrDefault(p => p.IDDungCu == ID);
+                if (dbDelete == null)
+                {
+                    throw new Exception("Không tìm thấy mã cần xóa");
+                }
+                else
+                {
+                    if (dbDelete != null)
+                    {
+                        DialogResult dr = MessageBox.Show("Bạn có muốn xóa ?", "Yes / No", MessageBoxButtons.YesNo);
+                        if (dr == DialogResult.Yes)
+                        {
+                            dgvVatTuInput.Rows.RemoveAt(dgvVatTuInput.CurrentRow.Index);
+                            context.DungCuNhaKhoas.Remove(dbDelete);
+                            context.SaveChanges();
+                            MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);
+                            clearContentVatTuNhap();
+                        }
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+       
+
+        private void btnStore_Click(object sender, EventArgs e)
+        {
+            frmKho frm = new frmKho(this);
+            this.Hide();
+            frm.ShowDialog();
+            this.Show();
+        }
+
+        private void btnXem_Click(object sender, EventArgs e)
+        {
+            List<DungCuNhaKhoa> listMedic = context.DungCuNhaKhoas.ToList();
+            BindGridNhap(listMedic);
+        }
+
+        private void cboFind_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            for (int i = 0; i < dgvVatTuInput.Rows.Count; i++)
+            {
+                if (cboFind.SelectedItem.ToString() == dgvVatTuInput.Rows[i].Cells[3].Value.ToString())
+                {
+                    dgvVatTuInput.Rows[i].Visible = true;
+                }
+                else
+                {
+                    dgvVatTuInput.Rows[i].Visible = false;
+                }
+            }
+        }
+
+        private void btnDongTabVatTu_Click(object sender, EventArgs e)
+        {
+            tabVatTu.Visible= false;
+        }
+        
+        private void btnBackFromVatTu_Click(object sender, EventArgs e)
+        {
+            tabTrangChu.Hide();
+        }
+
+
+        private void btnThongKeVT_Click(object sender, EventArgs e)
+        {
+
+            decimal s = 0;
+            for (int i = 0; i < dgvThongKeVT.Rows.Count; i++)
+            {
+                if (rdpMoth.Checked)
+                {
+                    if (dtpMonth.Value.Month.ToString() == DateTime.Parse(dgvThongKeVT.Rows[i].Cells[8].Value.ToString()).Month.ToString()
+                        && dtpYear.Value.Year.ToString() == DateTime.Parse(dgvThongKeVT.Rows[i].Cells[8].Value.ToString()).Year.ToString())
+                    {
+                        if (dgvThongKeVT.Rows[i].Cells[0].Value.ToString() == "Nhập")
+                        {
+                            s -= decimal.Parse(dgvThongKeVT.Rows[i].Cells[7].Value.ToString());
+                        }
+                        else
+                        {
+                            s += decimal.Parse(dgvThongKeVT.Rows[i].Cells[7].Value.ToString());
+                        }
+                        txtDoanh.Text = s.ToString();
+                    }
+                }
+                else if (rdpYear.Checked)
+                {
+                    if (dtpYear.Value.Year.ToString() == DateTime.Parse(dgvThongKeVT.Rows[i].Cells[8].Value.ToString()).Year.ToString())
+                    {
+                        if (dgvThongKeVT.Rows[i].Cells[0].Value.ToString() == "Nhập")
+                        {
+                            s -= decimal.Parse(dgvThongKeVT.Rows[i].Cells[7].Value.ToString());
+                        }
+                        else
+                        {
+                            s += decimal.Parse(dgvThongKeVT.Rows[i].Cells[7].Value.ToString());
+                        }
+                        txtDoanh.Text = s.ToString();
+                    }
+                }
+                else if (rdpQui.Checked)
+                {
+                    if (dtpQuy.Value.Year.ToString() == DateTime.Parse(dgvThongKeVT.Rows[i].Cells[8].Value.ToString()).Year.ToString())
+                    {
+                        int quy = cboQui.SelectedIndex;
+                        int transactionQuarter =
+                              (int.Parse(DateTime.Parse(dgvThongKeVT.Rows[i].Cells[8].Value.ToString()).Month.ToString()) - 1) / 3;
+                        if (transactionQuarter == quy)
+                        {
+                            if (dgvThongKeVT    .Rows[i].Cells[0].Value.ToString() == "Nhập")
+                            {
+                                s -= decimal.Parse(dgvThongKeVT.Rows[i].Cells[7].Value.ToString());
+                            }
+                            else
+                            {
+                                s += decimal.Parse(dgvThongKeVT.Rows[i].Cells[7].Value.ToString());
+                            }
+                        }
+                        txtDoanh.Text = s.ToString();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Ban can phai chon nut thong kẻ");
+                    break;
+                }
+            }
+        }
+        private void BindGridTK(List<DungCuNhaKhoa> Medics)
+        {
+
+            dgvThongKeVT.Rows.Clear();
+            foreach (var Medic in Medics)
+            {
+                int index = dgvThongKeVT.Rows.Add();
+                if (Medic.NoiDung == false)
+                {
+                    dgvThongKeVT.Rows[index].Cells[0].Value = "Xuất";
+                }
+                else
+                {
+                    dgvThongKeVT.Rows[index].Cells[0].Value = "Nhập";
+                }
+                dgvThongKeVT.Rows[index].Cells[1].Value = Medic.IDDungCu;
+                dgvThongKeVT.Rows[index].Cells[2].Value = Medic.TenDungCu.ToString();
+                dgvThongKeVT.Rows[index].Cells[3].Value = Medic.Loai.ToString();
+                dgvThongKeVT.Rows[index].Cells[4].Value = Medic.DonViTinh.ToString();
+                dgvThongKeVT.Rows[index].Cells[5].Value = Medic.SoLuongNhap.ToString();
+                dgvThongKeVT.Rows[index].Cells[6].Value = Medic.Don.ToString();
+                dgvThongKeVT.Rows[index].Cells[7].Value = Medic.ThanhTien.ToString();
+                dgvThongKeVT.Rows[index].Cells[8].Value = Medic.NgayNhap.ToString();
+
+            }
+        }
+        private void btnLoadTK_Click(object sender, EventArgs e)
+        {
+            List<DungCuNhaKhoa> listMedic = context.DungCuNhaKhoas.ToList();
+            BindGridTK(listMedic);
+        }
+
+        
+       
     }
+   
 }

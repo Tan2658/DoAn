@@ -21,7 +21,7 @@ namespace FormLogin
         private readonly TaiKhoanService taikhoan = new TaiKhoanService();
         private readonly BenhNhanService benhnhan = new BenhNhanService();
         ReportDataSource rp = new ReportDataSource();
-        DentalContextDB1 db1 = new DentalContextDB1();
+        DentalContextDB db1 = new DentalContextDB();
         DentalContextDB db = new DentalContextDB();
         public FormReportView()
         {

@@ -19,8 +19,7 @@ create table DungCuNhaKhoa
 	SoLuong int not null,
 	Don money not null,
 	ThanhTien money not null,
-	NgayNhap datetime not null,
-	primary key (IDDungCu)
+	NgayNhap datetime not null
 )
 INSERT INTO DungCuNhaKhoa
 VALUES('Nhap','SP1','Bong gon','VTYT','tui',1000,10000.00,10000000.00,'10/17/2023'),
@@ -30,6 +29,19 @@ VALUES('Nhap','SP1','Bong gon','VTYT','tui',1000,10000.00,10000000.00,'10/17/202
 	  ('Nhap','SP5','Nuoc suc mieng','Thuoc','cai',100,200000.00,20000000.00,'10/17/2023'),
 	  ('Nhap','SP6','Thuoc chong dau và chong viem ','Thuoc','thung',100,250000.00,25000000.00,'10/17/2023');
 
+	  if exists (select * from sys.objects where name ='Kho')
+	drop table Kho
+go
+create table Kho
+(
+	IDDungCu char(3) not null,
+	TenDungCu nvarchar(255) not null,
+	Loai nvarchar(255) not null,
+	DonViTinh nvarchar(255) not null,
+	SoLuong int not null,
+	Don money not null,
+	primary key (IDDungCu)
+)
 if exists (select * from sys.objects where name ='TaiKhoan')
 	drop table TaiKhoan
 go
@@ -47,6 +59,8 @@ create table BacSi
 (
 	MaNV char(3) not null,
 	TenDangNhap varchar(22) not null,
+	TrangThai nvarchar(52) not null,
+	IDChanDoan char(3) not null,
 	Ten nvarchar(50) not null,
 	ChucVu nvarchar(50) not null,
 	KinhNghiem nvarchar(50) not null,

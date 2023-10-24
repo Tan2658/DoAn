@@ -80,11 +80,23 @@
     <Compile Include="ForgetPassword.Designer.cs">
       <DependentUpon>ForgetPassword.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormKho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormKho.Designer.cs">
+      <DependentUpon>FormKho.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormReportView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormReportView.Designer.cs">
       <DependentUpon>FormReportView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Kho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Kho.Designer.cs">
+      <DependentUpon>Kho.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -104,8 +116,14 @@
     <EmbeddedResource Include="ForgetPassword.resx">
       <DependentUpon>ForgetPassword.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FormKho.resx">
+      <DependentUpon>FormKho.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormReportView.resx">
       <DependentUpon>FormReportView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Kho.resx">
+      <DependentUpon>Kho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>

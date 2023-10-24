@@ -11,17 +11,17 @@ namespace BUS
     {
         public List<BenhNhan> GetAll()
         {
-            DentalContextDB1 db1 = new DentalContextDB1();
+            DentalContextDB db1 = new DentalContextDB();
             return db1.BenhNhans.ToList();
         }
         public BenhNhan FindIDBenhNhan(string idBenhNhan)
         {
-            DentalContextDB1 db1 = new DentalContextDB1 ();
+            DentalContextDB db1 = new DentalContextDB ();
             return db1.BenhNhans.FirstOrDefault(p => p.IDBenhNhan == idBenhNhan);
         }
         public List<BenhNhan> FindBenhNhanWithMonth(int startMonth, int endMonth)
         {
-            DentalContextDB1 db1 = new DentalContextDB1();
+            DentalContextDB db1 = new DentalContextDB();
             return db1.BenhNhans.Where(p => p.NgayKhamDau.Month < endMonth && p.NgayKhamDau.Month > startMonth).ToList();
         }
     }

@@ -10,3 +10,15 @@ C:\Users\Admin\source\repos\DA Nha Khoa\DAL\obj\Debug\DAL.csproj.CoreCompileInpu
 C:\Users\Admin\source\repos\DA Nha Khoa\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\Admin\source\repos\DA Nha Khoa\DAL\obj\Debug\DAL.dll
 C:\Users\Admin\source\repos\DA Nha Khoa\DAL\obj\Debug\DAL.pdb
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\bin\Debug\DAL.dll.config
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\bin\Debug\DAL.dll
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\bin\Debug\DAL.pdb
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\bin\Debug\EntityFramework.dll
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\bin\Debug\EntityFramework.xml
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\obj\Debug\DAL.dll
+C:\Users\RON\OneDrive\Documents\DoAnLTWin\jmm\DAL\obj\Debug\DAL.pdb

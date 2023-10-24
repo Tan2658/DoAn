@@ -9,17 +9,23 @@ namespace DAL.Data
     [Table("BacSi")]
     public partial class BacSi
     {
-        [Required]
-        [StringLength(10)]
-        public string TrangThai { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public BacSi()
+        {
+            BenhNhans = new HashSet<BenhNhan>();
+        }
 
         [Key]
+        [StringLength(3)]
+        public string MaNV { get; set; }
+
+        [Required]
         [StringLength(22)]
         public string TenDangNhap { get; set; }
 
         [Required]
-        [StringLength(50)]
-        public string MatKhau { get; set; }
+        [StringLength(30)]
+        public string TrangThai { get; set; }
 
         [Required]
         [StringLength(50)]
@@ -35,10 +41,15 @@ namespace DAL.Data
 
         [Required]
         [StringLength(10)]
-        public string STD { get; set; }
+        public string SDT { get; set; }
 
         [Required]
-        [StringLength(255)]
-        public string Mota { get; set; }
+        [StringLength(100)]
+        public string MoTa { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BenhNhan> BenhNhans { get; set; }
+
+        public virtual TaiKhoan TaiKhoan { get; set; }
     }
 }
