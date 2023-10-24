@@ -6,12 +6,12 @@ go
 use QLNhaKhoa
 go
 
-if exists (select * from sys.objects where name ='DungCuNhaKhoaNhap')
-	drop table DungCuNhaKhoaNhap
+if exists (select * from sys.objects where name ='DungCuNhaKhoa')
+	drop table DungCuNhaKhoa
 go
-create table DungCuNhaKhoaNhap
+create table DungCuNhaKhoa
 (
-	Stt char(10) not null,
+	NoiDung bit not null,
 	IDDungCu char(5) not null,
 	TenDungCu nvarchar(255) not null,
 	Loai nvarchar(255) not null,
@@ -20,40 +20,37 @@ create table DungCuNhaKhoaNhap
 	Don money not null,
 	ThanhTien money not null,
 	NgayNhap datetime not null,
-	primary key (IDDungCu),
+	constraint chk_IDDungCu_NK foreign key (IDDungCu) references Kho(IDDungCu)
 )
+INSERT INTO DungCuNhaKhoa
+VALUES(1,'SP1',N'Bông gòn','VTYT',N'túi',1000,50000.00,50000000.00,'10/17/2023'),
+	  (1,'SP2',N'Thuốc tê local ',N'Thuốc',N'thùng',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP3',N'Ống hút bọt','VTYT',N'cái',1000,50000.00,50000000.00,'10/17/2023'),
+	  (1,'SP4',N'Gương nha khoa','VTYT',N'cái',50,50000.00,2500000.00,'10/17/2023'),
+	  (1,'SP5',N'Nước súc miệng',N'Thuốc',N'cái',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP6',N'Thuốc chống đau và chống viêm ',N'Thuốc',N'thùng',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP7',N'Kềm nhổ răng','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP8',N'Bút trám răng','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP9',N'Răng kim loại','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP10',N'Răng Titan','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP11',N'Răng sứ','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP12',N'Mắc cài kim loại','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
+	  (1,'SP13',N'Mắc cài sứ','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023');
 
-if exists (select * from sys.objects where name ='DungCuNhaKhoaXuat')
-	drop table DungCuNhaKhoaXuat
-go
-create table DungCuNhaKhoaXuat
-(
-	Stt char(10) not null,
-	IDDungCu char(5) not null,
-	TenDungCu nvarchar(255) not null,
-	Loai nvarchar(255) not null,
-	DonViTinh nvarchar(255) not null,
-	SoLuongXuat int,
-	Don money not null,
-	ThanhTien money not null,
-	NgayXuat datetime not null,
-	constraint chk_IDDungCu_Xuat foreign key (IDDungCu) references DungCuNhaKhoaNhap(IDDungCu)
-)
-INSERT INTO DungCuNhaKhoaNhap
-VALUES('1','SP1',N'Bông gòn','VTYT',N'túi',1000,50000.00,50000000.00,'10/17/2023'),
-	  ('2','SP2',N'Thuốc tê local ',N'Thuốc',N'thùng',100,50000.00,5000000.00,'10/17/2023'),
-	  ('3','SP3',N'Ống hút bọt','VTYT',N'cái',1000,50000.00,50000000.00,'10/17/2023'),
-	  ('4','SP4',N'Gương nha khoa','VTYT',N'cái',50,50000.00,2500000.00,'10/17/2023'),
-	  ('5','SP5',N'Nước súc miệng',N'Thuốc',N'cái',100,50000.00,5000000.00,'10/17/2023'),
-	  ('6','SP6',N'Thuốc chống đau và chống viêm ',N'Thuốc',N'thùng',100,50000.00,5000000.00,'10/17/2023'),
-	  ('7','SP7',N'Kềm nhổ răng','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
-	  ('8','SP8',N'Bút trám răng','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
-	  ('9','SP9',N'Răng kim loại','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
-	  ('10','SP10',N'Răng Titan','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
-	  ('11','SP11',N'Răng sứ','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
-	  ('12','SP12',N'Mắc cài kim loại','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023'),
-	  ('13','SP13',N'Mắc cài sứ','VTYT',N'cái',100,50000.00,5000000.00,'10/17/2023');
-
+INSERT INTO Kho
+VALUES('SP1',N'Bông gòn','VTYT',N'túi',1000,50000.00),
+	  ('SP2',N'Thuốc tê local ',N'Thuốc',N'thùng',100,50000.00),
+	  ('SP3',N'Ống hút bọt','VTYT',N'cái',1000,50000.00),
+	  ('SP4',N'Gương nha khoa','VTYT',N'cái',50,50000.00),
+	  ('SP5',N'Nước súc miệng',N'Thuốc',N'cái',100,50000.00),
+	  ('SP6',N'Thuốc chống đau và chống viêm ',N'Thuốc',N'thùng',100,50000.00),
+	  ('SP7',N'Kềm nhổ răng','VTYT',N'cái',100,50000.00),
+	  ('SP8',N'Bút trám răng','VTYT',N'cái',100,50000.00),
+	  ('SP9',N'Răng kim loại','VTYT',N'cái',100,50000.00),
+	  ('SP10',N'Răng Titan','VTYT',N'cái',100,50000.00),
+	  ('SP11',N'Răng sứ','VTYT',N'cái',100,50000.00),
+	  ('SP12',N'Mắc cài kim loại','VTYT',N'cái',100,50000.00),
+	  ('SP13',N'Mắc cài sứ','VTYT',N'cái',100,50000.00);
 
 
 if exists (select * from sys.objects where name ='Kho')
@@ -61,15 +58,16 @@ if exists (select * from sys.objects where name ='Kho')
 go
 create table Kho
 (
-	Stt char(10) not null,
 	IDDungCu char(5) not null ,
 	TenDungCu nvarchar(255) not null,
 	Loai nvarchar(255) not null,
 	DonViTinh nvarchar(255) not null,
 	SoLuong int ,
 	Don money not null,
-	constraint chk_IDDungCu_Kho foreign key (IDDungCu) references DungCuNhaKhoaNhap(IDDungCu)
+	primary key (IDDungCu)
+	
 )
+
 if exists (select * from sys.objects where name ='TaiKhoan')
 	drop table TaiKhoan
 go
@@ -219,7 +217,7 @@ create table DieuTri
 	ThanhTien money not null,
 	constraint chk_IDDichVu_DieuTri foreign key (IDDichVu) references DichVu(IDDichVu),
 	constraint chk_IDBenhNhan_DieuTri foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan),
-	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references DungCuNhaKhoaNhap(IDDungCu),
+	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references Kho(IDDungCu),
 )
 
 if exists (select * from sys.objects where name ='DonThuoc')
