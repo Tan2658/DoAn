@@ -166,7 +166,7 @@ create table DanhSachKham
 (
 	IDKham char(3) not null,
 	IDBenhNhan char(3) not null,
-	MaNV char(3) not null,
+	MaNV char(3),
 	NgayKham datetime not null,
 	primary key (IDKham),
 	constraint chk_IDBenhNhan_DanhSachKham foreign key (IDBenhNhan) references BenhNhan(IDBenhNhan),
