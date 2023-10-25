@@ -284,7 +284,7 @@ create table DieuTri
 	ThanhTien money not null,
 	constraint chk_IDDichVu_DieuTri foreign key (IDDichVu) references DichVu(IDDichVu),
 	constraint chk_IDKham_DieuTri foreign key (IDKham) references DanhSachKham(IDKham),
-	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references Kho(IDDungCu),
+	constraint chk_IDDungCu_DieuTri foreign key (IDDungCu) references Kho(IDDungCu)
 )
 
 if exists (select * from sys.objects where name ='DonThuoc')
