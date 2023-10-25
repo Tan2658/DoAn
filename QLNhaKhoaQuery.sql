@@ -153,7 +153,7 @@ create table BenhNhan
 	HoTen nvarchar(255) not null,
 	Gioi bit,
 	NamSinh char(4),
-	SDT varchar(11),
+	SDT varchar(10),
 	DiaChi nvarchar(255),
 	NgayKhamDau datetime,
 	primary key (IDBenhNhan)
