@@ -18,6 +18,27 @@ create table ThiTruong
 	DonGia money not null,
 	primary key (IDSanPham)
 )
+insert into ThiTruong
+values('SP01',N'Bông gòn','VTYT',N'túi',50000.00),
+	  ('SP02',N'Thuốc tê local ',N'Thuốc',N'thùng',50000.00),
+	  ('SP03',N'Ống hút bọt','VTYT',N'cái',50000.00),
+	  ('SP04',N'Gương nha khoa','VTYT',N'cái',50000.00),
+	  ('SP05',N'Nước súc miệng',N'Thuốc',N'cái',50000.00),
+	  ('SP06',N'Thuốc chống đau và chống viêm ',N'Thuốc',N'thùng',50000.00),
+	  ('SP07',N'Kềm nhổ răng','VTYT',N'cái',50000.00),
+	  ('SP08',N'Bút trám răng','VTYT',N'cái',50000.00),
+	  ('SP09',N'Răng kim loại','VTYT',N'cái',50000.00),
+	  ('SP10',N'Răng Titan','VTYT',N'cái',50000.00),
+	  ('SP11',N'Răng sứ','VTYT',N'cái',50000.00),
+	  ('SP12',N'Mắc cài kim loại','VTYT',N'cái',50000.00),
+	  ('SP13',N'Mắc cài sứ','VTYT',N'cái',50000.00),
+	  ('SP14',N'Thuốc trị sâu răng',N'Thuốc',N'thùng',50000.00),
+	  ('SP15',N'Thuốc trị sưng nướu',N'Thuốc',N'thùng',50000.00),
+	  ('SP16',N'Kháng sinh',N'Thuốc',N'cái',50000.00),
+	  ('SP17',N'thuốc giảm căng thẳng',N'Thuốc',N'thùng',50000.00),
+	  ('SP18',N'Thuốc tạo men răng',N'Thuốc',N'thùng',50000.00),
+	  ('SP19',N'Thuốc kháng dị ứng',N'Thuốc',N'thùng',50000.00),
+	  ('SP20',N'Thuốc kháng vi khuẩn miệng',N'Thuốc',N'thùng',50000.00);
 	
 if exists (select * from sys.objects where name ='Kho')
 	drop table Kho
@@ -71,7 +92,7 @@ create table LichSuNhapXuat
 	NgayNhap datetime not null,
 	constraint chk_IDDungCu_NK foreign key (IDDungCu) references Kho(IDDungCu)
 )
-INSERT INTO DungCuNhaKhoa
+INSERT INTO LichSuNhapXuat
 VALUES(1,'DC01',N'Bông gòn','VTYT',N'túi',1000,50000.00,50000000.00,'10/17/2023'),
 	  (1,'DC02',N'Thuốc tê local ',N'Thuốc',N'thùng',100,50000.00,5000000.00,'10/17/2023'),
 	  (1,'DC03',N'Ống hút bọt','VTYT',N'cái',1000,50000.00,50000000.00,'10/17/2023'),
